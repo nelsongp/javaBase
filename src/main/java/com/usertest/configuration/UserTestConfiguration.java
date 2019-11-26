@@ -14,10 +14,10 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class PalmConfiguration {
+public class UserTestConfiguration {
 	private Environment env;
 	
-	public PalmConfiguration( Environment env) {
+	public UserTestConfiguration( Environment env) {
 		this.env = env;
 	}
 	
