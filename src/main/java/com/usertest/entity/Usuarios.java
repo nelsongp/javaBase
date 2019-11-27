@@ -1,9 +1,13 @@
 package com.usertest.entity;
-// Generated 26-nov-2019 14:29:29 by Hibernate Tools 5.2.12.Final
+// Generated 26/11/2019 11:27:50 PM by Hibernate Tools 5.2.12.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,13 +19,19 @@ public class Usuarios implements java.io.Serializable {
 
 	private String username;
 	private String userpassword;
+	private Set<UserInfo> userInfos = new HashSet<UserInfo>(0);
 
 	public Usuarios() {
 	}
 
-	public Usuarios(String username, String userpassword) {
+	public Usuarios(String username) {
+		this.username = username;
+	}
+
+	public Usuarios(String username, String userpassword, Set<UserInfo> userInfos) {
 		this.username = username;
 		this.userpassword = userpassword;
+		this.userInfos = userInfos;
 	}
 
 	@Id
@@ -35,13 +45,22 @@ public class Usuarios implements java.io.Serializable {
 		this.username = username;
 	}
 
-	@Column(name = "userpassword", nullable = false, length = 25)
+	@Column(name = "userpassword", length = 25)
 	public String getUserpassword() {
 		return this.userpassword;
 	}
 
 	public void setUserpassword(String userpassword) {
 		this.userpassword = userpassword;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
+	public Set<UserInfo> getUserInfos() {
+		return this.userInfos;
+	}
+
+	public void setUserInfos(Set<UserInfo> userInfos) {
+		this.userInfos = userInfos;
 	}
 
 }

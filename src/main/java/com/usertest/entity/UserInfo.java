@@ -1,9 +1,14 @@
 package com.usertest.entity;
-// Generated 26-nov-2019 14:29:29 by Hibernate Tools 5.2.12.Final
+// Generated 26/11/2019 11:27:50 PM by Hibernate Tools 5.2.12.Final
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -13,72 +18,76 @@ import javax.persistence.Table;
 @Table(name = "user_info")
 public class UserInfo implements java.io.Serializable {
 
-	private String username;
-	private String usrFirstname;
-	private String usrLastname;
-	private Integer usrAge;
-	private String usrAddress;
+	private UserInfoId id;
+	private Usuarios usuarios;
+	private String usrlastname;
+	private Integer usrage;
+	private String usraddress;
 
 	public UserInfo() {
 	}
 
-	public UserInfo(String username) {
-		this.username = username;
+	public UserInfo(UserInfoId id, Usuarios usuarios) {
+		this.id = id;
+		this.usuarios = usuarios;
 	}
 
-	public UserInfo(String username, String usrFirstname, String usrLastname, Integer usrAge, String usrAddress) {
-		this.username = username;
-		this.usrFirstname = usrFirstname;
-		this.usrLastname = usrLastname;
-		this.usrAge = usrAge;
-		this.usrAddress = usrAddress;
+	public UserInfo(UserInfoId id, Usuarios usuarios, String usrlastname, Integer usrage, String usraddress) {
+		this.id = id;
+		this.usuarios = usuarios;
+		this.usrlastname = usrlastname;
+		this.usrage = usrage;
+		this.usraddress = usraddress;
 	}
 
-	@Id
+	@EmbeddedId
 
-	@Column(name = "username", unique = true, nullable = false, length = 25)
-	public String getUsername() {
-		return this.username;
+	@AttributeOverrides({
+			@AttributeOverride(name = "username", column = @Column(name = "username", nullable = false, length = 25)),
+			@AttributeOverride(name = "usrfirstname", column = @Column(name = "usrfirstname", nullable = false, length = 50)) })
+	public UserInfoId getId() {
+		return this.id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setId(UserInfoId id) {
+		this.id = id;
 	}
 
-	@Column(name = "usr_firstname", length = 50)
-	public String getUsrFirstname() {
-		return this.usrFirstname;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "username", nullable = false, insertable = false, updatable = false)
+	public Usuarios getUsuarios() {
+		return this.usuarios;
 	}
 
-	public void setUsrFirstname(String usrFirstname) {
-		this.usrFirstname = usrFirstname;
+	public void setUsuarios(Usuarios usuarios) {
+		this.usuarios = usuarios;
 	}
 
-	@Column(name = "usr_lastname", length = 50)
-	public String getUsrLastname() {
-		return this.usrLastname;
+	@Column(name = "usrlastname", length = 50)
+	public String getUsrlastname() {
+		return this.usrlastname;
 	}
 
-	public void setUsrLastname(String usrLastname) {
-		this.usrLastname = usrLastname;
+	public void setUsrlastname(String usrlastname) {
+		this.usrlastname = usrlastname;
 	}
 
-	@Column(name = "usr_age")
-	public Integer getUsrAge() {
-		return this.usrAge;
+	@Column(name = "usrage")
+	public Integer getUsrage() {
+		return this.usrage;
 	}
 
-	public void setUsrAge(Integer usrAge) {
-		this.usrAge = usrAge;
+	public void setUsrage(Integer usrage) {
+		this.usrage = usrage;
 	}
 
-	@Column(name = "usr_address", length = 100)
-	public String getUsrAddress() {
-		return this.usrAddress;
+	@Column(name = "usraddress", length = 100)
+	public String getUsraddress() {
+		return this.usraddress;
 	}
 
-	public void setUsrAddress(String usrAddress) {
-		this.usrAddress = usrAddress;
+	public void setUsraddress(String usraddress) {
+		this.usraddress = usraddress;
 	}
 
 }
