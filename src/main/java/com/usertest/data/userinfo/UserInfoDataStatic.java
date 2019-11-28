@@ -29,4 +29,10 @@ public class UserInfoDataStatic implements IUserInfoData{
 			return false;
 	}
 
+	@Override
+	public List<UserInfo> getUserByAge(Integer pre, Integer sec) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

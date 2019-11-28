@@ -17,8 +17,8 @@ hikari:
 
 spring:
   datasource:
-    #url: jdbc:postgresql://localhost:5432/lpp_local?currentSchema=usuarios_test
-    url: jdbc:postgresql://localhost:5432/test?currentSchema=usuarios_test
+    url: jdbc:postgresql://localhost:5432/lpp_local?currentSchema=usuarios_test
+    #url: jdbc:postgresql://localhost:5432/test?currentSchema=usuarios_test
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
@@ -33,5 +33,6 @@ config:
     data: UserDataBase
     save: /saveUser
   usuarios-info:
+    range: /rangoEdad/{pre}/{sec}
     data: UserInfoDataBase
     
