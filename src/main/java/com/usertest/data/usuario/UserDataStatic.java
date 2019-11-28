@@ -27,4 +27,10 @@ public class UserDataStatic implements IUserData{
 			return false;
 	}
 
+	@Override
+	public Boolean findUsuario(String usuario) {
+		
+		return null;
+	}
+
 }
